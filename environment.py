@@ -9,7 +9,7 @@ def before_scenario(context, scenario):
     context.driver.maximize_window()
     context.driver.implicitly_wait(10)
 
-    def after_scenario(context, scenario):
-        if context.driver:
-            print(f"Finishing scenario: {scenario.name}")
-            context.driver.quit()
+def after_scenario(context, scenario):
+    if context.driver:
+        print(f"Finishing scenario: {scenario.name}")
+        context.driver.quit()
