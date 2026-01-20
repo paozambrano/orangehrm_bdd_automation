@@ -10,7 +10,7 @@ Feature: Admin User Management
 
     @smoke @admin 
     Scenario Outline: Add and verify a new system user
-        Given I navigte to the Admin User Management page
+        Given I navigate to the Admin User Management page
         When I click on the Add button
         And I fill the user form with "<user_role>", "<employee_name>", "<username>" and "<password>"
         And I click on Save
