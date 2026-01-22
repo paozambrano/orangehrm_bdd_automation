@@ -14,9 +14,9 @@ Feature: Admin User Management
         When I click on the Add button
         And I fill the user form with "<user_role>", "<employee_name>", "<username>" and "<password>"
         And I click on Save
-        Then I should be able to find "<username>" in the  user table
+        Then I should be able to find "<username>" in the user table
 
         Examples:
-            |user_role  |   employee_name   | username      | password      |
-            |Admin      |   Orange Test     | PaoTester_01  | Admin123!     |
-            |ESS        |   Orange Test     | PaoTester_02  | Admin123!     |
+            |user_role  |   employee_name  | username      | password      |
+            |Admin      |   John A Doe     | PaoTester_01  | Admin123!     |
+            |ESS        |   John A Doe     | PaoTester_04  | Admin123!     |

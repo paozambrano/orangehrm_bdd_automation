@@ -2,6 +2,8 @@ from behave import given, when, then
 from pages.login_page import LoginPage
 from pages.admin_page import AdminPage
 from selenium.webdriver.common.by import By
+import time
+from selenium.webdriver.support import expected_conditions as EC
 
 @given('I navigate to the OrangeHRM login page')
 def step_impl(context):
@@ -35,5 +37,8 @@ def step_impl(context):
 
 @then('I should be able to find "{username}" in the user table')
 def step_impl(context, username):
+    time.sleep(3)
     user_locator = (By.XPATH, f"//div[text()='{username}']")
-    assert context.admin_page.wait.until(lambda d: d.find_element(*user_locator))
+
+    result = context.admin_page.wait.until(EC.presence_of_element_located(user_locator))
+    assert result is not None, f"No se encontró el usuario {username} en la tabla"

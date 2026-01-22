@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 import time
+from selenium.webdriver.support import expected_conditions as EC
 
 class AdminPage(BasePage):
     ADMIN_MENU = (By.XPATH, "//span[text()='Admin']")
@@ -29,8 +30,17 @@ class AdminPage(BasePage):
         self.click_element((By.XPATH, f"//span[text()='{role}']"))
 
         self.type_text(self.EMPLOYEE_NAME_INPUT, employee_name)
-        time.sleep(2)
-        self.click_element((By.XPATH, "//div[@role='option']"))
+        time.sleep(3)
+
+
+        suggestion_xpath = "//div[@role='option']"
+        try:
+            suggestion_element = self.wait.until(EC.element_to_be_clickable((By.XPATH, suggestion_xpath)))
+            suggestion_element.click()
+        except:
+            
+            el = self.driver.find_element(By.XPATH, suggestion_xpath)
+            self.driver.execute_script("arguments[0].click();", el)
 
         self.click_element(self.STATUS_DROPDOWN)
         self.click_element((By.XPATH, "//span[text()='Enabled']"))
